@@ -18,7 +18,7 @@ export async function onRequestPost({ request, env }) {
             random = getRandomString(6);
         }
 
-        await env.URLS.put(random, url, { expirationTtl: 60 });
+        await env.URLS.put(random, url, { expirationTtl: 60 * 60 * 24 }); // expire urls after 24 hrs
 
         return new Response(JSON.stringify({ shortURL: random }), { headers: { 'content-type': 'application/json' } });
 
